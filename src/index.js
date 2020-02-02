@@ -92,12 +92,9 @@ function returnArgumentsArray() {
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(fn) {
-  var args = Array.prototype.slice.call(arguments)
+function bindFunction(fn, ...args) {
+  return () => fn(...args);
 
-  return function () {
-    fn.apply(null, arguments);
-  }
 }
 
 export {
