@@ -42,9 +42,7 @@ function reduce(array, fn, initial) {
     let accumulator = initial || array[0];
 
     for (let i = initial ? 0 : 1; i < array.length; i++) {
-
         accumulator = fn(accumulator, array[i], i, array);
-
     }
     
     return accumulator;
@@ -64,10 +62,13 @@ function upperProps(obj) {
     let arr2 = [];
 
     for (let i in arr) {
-        arr2.push(arr[i].toUpperCase());
+        if (arr.length != 0) {
+            arr2.push(arr[i].toUpperCase());
+        }
     }
 
     return arr2;
+    
 }
 
 /*
@@ -77,21 +78,26 @@ function upperProps(obj) {
  Посмотрите как работает slice и повторите это поведение для массива, который будет передан в параметре array
  */
 
-// let arr_test = [0, 1, 2, 3, 4, 5, 6];
+// let arrTest = [0, 1, 2, 3, 4, 5, 6];
+
 function slice(array, from, to) {
+    
     let end = to || array.length;
     let i = from || 0;
     let newArray = [];
 
-    for (i; i < end; i++) {
+    for (i; i <= end; i++) {
         newArray.push(array[i]);
     }
     
     return newArray
+    
+    // console.log(newArray);
 
 }
 
-// slice(arr_test, 1, 4);
+// console.log(arrTest.slice(1, 4));
+// slice(arrTest, 1, 4);
 /*
  Задание 6 *:
  
