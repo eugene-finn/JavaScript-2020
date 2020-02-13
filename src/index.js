@@ -153,25 +153,46 @@ function deleteTextNodesRecursive(where) {
      texts: 3
    }
  */
+
+// let base = '<div class="some-class-1"><b>привет!</b> <b class="some-class-1 some-class-2">loftschool</b></div>';
+
+// collectDOMStat(base);
+
 function collectDOMStat(root) {
-    let obj = {},
-        classes = obj.classes = {},
-        tags = obj.tags = {},
-        where = [...root.childNodes];
 
-    for (const el of where) {
-        if (el.nodeType === 1) {
-            let tgName = where.tagName;
+    let tags = {},
+        classes = {},
+        texts = 0;
 
-            classes.tgName = classes.tgName + 1;
-        } else if (el.nodeType === 2) {
-            obj.classes++
-        } else if (el.nodeType === 3) {
-            obj.texts++
+    function check(element) {
+        for (let el of element.childNodes) {
+            if (el.nodeType === 1) {
+
+                tags[el.tagName] = (tags[el.tagName] || 0) + 1
+
+                for (let cl of el.classList) {
+                    classes[cl] = (classes[cl] || 0) + 1
+                }
+            }
+
+            if (el.nodeType === 3) {
+                texts++
+            }
+
+            if (el.childNodes.length) {
+                check(el)
+            }
         }
     }
-  
-    return obj;
+
+    check(root)
+
+    return {
+        tags: tags,
+        classes: classes,
+        texts: texts
+    };
+
 }
 
 /*
