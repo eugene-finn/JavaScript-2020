@@ -37,6 +37,8 @@ const homeworkContainer = document.querySelector('#homework-container');
  https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json
  */
 function loadTowns() {
+    fetch('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
+        .then()
 }
 
 /*

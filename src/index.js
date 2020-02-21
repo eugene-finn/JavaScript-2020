@@ -34,9 +34,8 @@ function loadAndSortTowns() {
             .then(response => response.json()
             )
             .then(json => {
-                let sortTowns = json.sort((a, b) => a.name > b.name);
+                let sortTowns = json.sort((a, b) => a.name > b.name ? 1 : -1);
 
-                console.log(sortTowns);
                 resolve(sortTowns);
             });
         
