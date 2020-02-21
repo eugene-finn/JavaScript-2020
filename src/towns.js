@@ -33,12 +33,22 @@ const homeworkContainer = document.querySelector('#homework-container');
 /*
  Функция должна вернуть Promise, который должен быть разрешен с массивом городов в качестве значения
 
- Массив городов пожно получить отправив асинхронный запрос по адресу
+ Массив городов можно получить отправив асинхронный запрос по адресу
  https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json
  */
 function loadTowns() {
-    fetch('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
-        .then()
+    return new Promise(resolve => {
+
+        fetch('https://raw.githubusercontent.com/smelukov/citiesTest/master/cities.json')
+            .then(response => response.json()
+            )
+            .then(json => {
+                let sortedTowns = json.sort((a, b) => a.name > b.name ? 1 : -1);
+
+                resolve(sortedTowns);
+            });
+
+    });
 }
 
 /*
@@ -53,6 +63,7 @@ function loadTowns() {
    isMatching('Moscow', 'Moscov') // false
  */
 function isMatching(full, chunk) {
+  
 }
 
 /* Блок с надписью "Загрузка" */
